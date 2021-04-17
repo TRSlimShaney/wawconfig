@@ -1,0 +1,50 @@
+object SavedForm: TSavedForm
+  Left = 300
+  Height = 69
+  Top = 348
+  Width = 183
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsDialog
+  Caption = 'Config Saved'
+  ClientHeight = 69
+  ClientWidth = 183
+  LCLVersion = '2.0.12.0'
+  object Label1: TLabel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Owner
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Side = asrBottom
+    Left = 10
+    Height = 15
+    Top = 10
+    Width = 163
+    Alignment = taCenter
+    Anchors = [akTop, akLeft, akRight]
+    AutoSize = False
+    BorderSpacing.Around = 10
+    Caption = 'Config saved successfully.'
+    Font.Height = 16
+    ParentColor = False
+    ParentFont = False
+    OptimalFill = True
+  end
+  object ThanksButton: TButton
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Label1
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = Owner
+    AnchorSideBottom.Side = asrBottom
+    Left = 10
+    Height = 25
+    Top = 34
+    Width = 163
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    BorderSpacing.Top = 14
+    BorderSpacing.Around = 10
+    Caption = 'Thanks!'
+    OnClick = ThanksButtonClick
+    TabOrder = 0
+  end
+end

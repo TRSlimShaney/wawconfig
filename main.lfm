@@ -1,0 +1,395 @@
+object MainForm: TMainForm
+  Left = 110
+  Height = 470
+  Top = 129
+  Width = 298
+  BorderIcons = [biSystemMenu, biMinimize]
+  BorderStyle = bsSingle
+  Caption = 'CoD WaW Configurator'
+  ClientHeight = 450
+  ClientWidth = 298
+  Menu = MainMenu1
+  OnActivate = FormActivate
+  OnDestroy = FormDestroy
+  LCLVersion = '2.0.12.0'
+  object ProfileGroup: TGroupBox
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Owner
+    Left = 10
+    Height = 166
+    Top = 10
+    Width = 126
+    BorderSpacing.Around = 10
+    Caption = 'Choose a profile'
+    ClientHeight = 146
+    ClientWidth = 122
+    TabOrder = 0
+    object ProfileList: TListBox
+      AnchorSideLeft.Control = ProfileGroup
+      AnchorSideTop.Control = ProfileGroup
+      AnchorSideRight.Control = ProfileGroup
+      AnchorSideRight.Side = asrBottom
+      AnchorSideBottom.Control = ProfileGroup
+      AnchorSideBottom.Side = asrBottom
+      Left = 10
+      Height = 126
+      Top = 10
+      Width = 102
+      Anchors = [akTop, akLeft, akRight, akBottom]
+      BorderSpacing.Around = 10
+      ItemHeight = 0
+      OnSelectionChange = ProfileListSelectionChange
+      TabOrder = 0
+    end
+  end
+  object ConfigGroup: TGroupBox
+    AnchorSideLeft.Control = ProfileGroup
+    AnchorSideTop.Control = Owner
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    Left = 162
+    Height = 168
+    Top = 10
+    Width = 126
+    Anchors = [akTop, akRight]
+    BorderSpacing.Around = 10
+    Caption = 'Choose a config'
+    ClientHeight = 148
+    ClientWidth = 122
+    Enabled = False
+    TabOrder = 1
+    object ConfigList: TListBox
+      AnchorSideLeft.Control = ConfigGroup
+      AnchorSideTop.Control = ConfigGroup
+      AnchorSideRight.Control = ConfigGroup
+      AnchorSideRight.Side = asrBottom
+      AnchorSideBottom.Control = ConfigGroup
+      AnchorSideBottom.Side = asrBottom
+      Left = 10
+      Height = 128
+      Top = 10
+      Width = 102
+      Anchors = [akTop, akLeft, akRight, akBottom]
+      BorderSpacing.Around = 10
+      ItemHeight = 0
+      OnSelectionChange = ConfigListSelectionChange
+      TabOrder = 0
+    end
+  end
+  object SettingsGroup: TGroupBox
+    AnchorSideLeft.Control = Owner
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = Owner
+    AnchorSideBottom.Side = asrBottom
+    Left = 10
+    Height = 251
+    Top = 189
+    Width = 278
+    Anchors = [akLeft, akRight, akBottom]
+    AutoSize = True
+    BorderSpacing.Around = 10
+    Caption = 'Settings'
+    ClientHeight = 231
+    ClientWidth = 274
+    Enabled = False
+    TabOrder = 2
+    object AnimatedCheck: TCheckBox
+      AnchorSideLeft.Control = SettingsGroup
+      AnchorSideTop.Control = SettingsGroup
+      Left = 10
+      Height = 19
+      Top = 10
+      Width = 102
+      BorderSpacing.Around = 10
+      Caption = 'Animated Trees'
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 0
+    end
+    object BloodCheck: TCheckBox
+      AnchorSideLeft.Control = SettingsGroup
+      AnchorSideTop.Control = AnimatedCheck
+      Left = 10
+      Height = 19
+      Top = 30
+      Width = 68
+      BorderSpacing.Top = 10
+      BorderSpacing.Around = 10
+      Caption = 'BLOOD!!!'
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 1
+    end
+    object BrassCheck: TCheckBox
+      AnchorSideLeft.Control = SettingsGroup
+      AnchorSideTop.Control = BloodCheck
+      Left = 10
+      Height = 19
+      Top = 50
+      Width = 94
+      BorderSpacing.Top = 10
+      BorderSpacing.Around = 10
+      Caption = 'Bullet Casings'
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 2
+    end
+    object StrongCheck: TCheckBox
+      AnchorSideLeft.Control = SettingsGroup
+      AnchorSideTop.Control = BrassCheck
+      Left = 10
+      Height = 19
+      Hint = 'Toggle communist censhorship.'
+      Top = 70
+      Width = 110
+      BorderSpacing.Top = 10
+      BorderSpacing.Around = 10
+      Caption = 'Strong Language'
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 3
+    end
+    object SubtitlesCheck: TCheckBox
+      AnchorSideLeft.Control = SettingsGroup
+      AnchorSideTop.Control = StrongCheck
+      Left = 10
+      Height = 19
+      Top = 90
+      Width = 65
+      BorderSpacing.Top = 10
+      BorderSpacing.Around = 10
+      Caption = 'Subtitles'
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 4
+    end
+    object MicCheck: TCheckBox
+      AnchorSideLeft.Control = SettingsGroup
+      AnchorSideTop.Control = SubtitlesCheck
+      Left = 10
+      Height = 19
+      Top = 110
+      Width = 85
+      BorderSpacing.Top = 10
+      BorderSpacing.Around = 10
+      Caption = 'Microphone'
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 5
+    end
+    object SkipIntroCheck: TCheckBox
+      AnchorSideLeft.Control = SettingsGroup
+      AnchorSideTop.Control = MicCheck
+      Left = 10
+      Height = 19
+      Top = 130
+      Width = 70
+      BorderSpacing.Top = 10
+      BorderSpacing.Around = 10
+      Caption = 'Skip Intro'
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 6
+    end
+    object ControllerCheck: TCheckBox
+      AnchorSideLeft.Control = SettingsGroup
+      AnchorSideTop.Control = SkipIntroCheck
+      Left = 10
+      Height = 19
+      Hint = 'Turn Xbox 360 and Xbox One controller support on or off.'
+      Top = 150
+      Width = 111
+      BorderSpacing.Top = 10
+      BorderSpacing.Around = 10
+      Caption = 'XInput Controller'
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 7
+    end
+    object FPSLimit: TEdit
+      AnchorSideLeft.Control = AnimatedCheck
+      AnchorSideTop.Control = SettingsGroup
+      AnchorSideRight.Control = SettingsGroup
+      AnchorSideRight.Side = asrBottom
+      Left = 184
+      Height = 23
+      Hint = 'Limit your FPS (for FreeSync, for example)'
+      Top = 10
+      Width = 80
+      Anchors = [akTop, akRight]
+      BorderSpacing.Around = 10
+      NumbersOnly = True
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 8
+      Text = 'FPS Limit'
+      TextHint = 'FPS Limit'
+    end
+    object CorpseLimit: TEdit
+      AnchorSideTop.Control = FPSLimit
+      AnchorSideRight.Control = SettingsGroup
+      AnchorSideRight.Side = asrBottom
+      Left = 184
+      Height = 23
+      Hint = 'How many bodies before they disappear'
+      Top = 33
+      Width = 80
+      Anchors = [akTop, akRight]
+      BorderSpacing.Top = 13
+      BorderSpacing.Around = 10
+      NumbersOnly = True
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 9
+      Text = 'Corpse Limit'
+      TextHint = 'Corpse Limit'
+    end
+    object FOV: TEdit
+      AnchorSideTop.Control = CorpseLimit
+      AnchorSideRight.Control = SettingsGroup
+      AnchorSideRight.Side = asrBottom
+      Left = 184
+      Height = 23
+      Hint = 'Set your preferred Field Of View'
+      Top = 56
+      Width = 80
+      Anchors = [akTop, akLeft, akRight]
+      BorderSpacing.Top = 13
+      BorderSpacing.Around = 10
+      NumbersOnly = True
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 10
+      Text = 'FOV'
+      TextHint = 'FOV'
+    end
+    object SaveButton: TButton
+      AnchorSideTop.Control = LockCheck
+      AnchorSideRight.Control = SettingsGroup
+      AnchorSideRight.Side = asrBottom
+      Left = 153
+      Height = 25
+      Top = 206
+      Width = 121
+      Anchors = [akTop, akLeft, akRight]
+      BorderSpacing.Top = 25
+      Caption = 'Save'
+      OnClick = SaveButtonClick
+      TabOrder = 11
+    end
+    object LockCheck: TCheckBox
+      AnchorSideTop.Control = GroupBox1
+      AnchorSideRight.Control = SettingsGroup
+      AnchorSideRight.Side = asrBottom
+      Left = 152
+      Height = 19
+      Hint = 'This will stop CoD from messing with your config. This is recommended.'
+      Top = 181
+      Width = 122
+      Anchors = [akTop, akLeft, akRight]
+      BorderSpacing.Top = 50
+      Caption = 'Lock Config'
+      TabOrder = 12
+    end
+    object GroupBox1: TGroupBox
+      AnchorSideTop.Control = GroupBox3
+      AnchorSideRight.Control = SettingsGroup
+      AnchorSideRight.Side = asrBottom
+      Left = 162
+      Height = 45
+      Top = 131
+      Width = 102
+      Anchors = [akTop, akLeft, akRight]
+      BorderSpacing.Top = 50
+      BorderSpacing.Right = 10
+      Caption = 'Resolution'
+      ClientHeight = 25
+      ClientWidth = 98
+      TabOrder = 13
+      object ResolutionBar: TTrackBar
+        Left = -3
+        Height = 24
+        Top = 0
+        Width = 100
+        Max = 3
+        Position = 0
+        TabOrder = 0
+      end
+    end
+    object GroupBox2: TGroupBox
+      AnchorSideLeft.Control = SettingsGroup
+      AnchorSideTop.Control = ControllerCheck
+      Left = 10
+      Height = 48
+      Top = 170
+      Width = 101
+      BorderSpacing.Top = 10
+      BorderSpacing.Around = 10
+      Caption = 'Stick Sensitivity'
+      ClientHeight = 28
+      ClientWidth = 97
+      TabOrder = 14
+      object ThumbBar: TTrackBar
+        AnchorSideLeft.Control = GroupBox2
+        AnchorSideTop.Control = GroupBox2
+        AnchorSideRight.Control = GroupBox2
+        AnchorSideRight.Side = asrBottom
+        AnchorSideBottom.Control = GroupBox2
+        AnchorSideBottom.Side = asrBottom
+        Left = 1
+        Height = 26
+        Top = 1
+        Width = 95
+        Max = 4
+        Position = 1
+        Anchors = [akTop, akLeft, akRight, akBottom]
+        BorderSpacing.Around = 1
+        TabOrder = 0
+      end
+    end
+    object GroupBox3: TGroupBox
+      AnchorSideTop.Control = FOV
+      AnchorSideRight.Control = SettingsGroup
+      AnchorSideRight.Side = asrBottom
+      Left = 159
+      Height = 52
+      Top = 81
+      Width = 105
+      Anchors = [akTop, akLeft, akRight]
+      BorderSpacing.Top = 25
+      BorderSpacing.Right = 10
+      Caption = 'AA Samples'
+      ClientHeight = 32
+      ClientWidth = 101
+      TabOrder = 15
+      object AABar: TTrackBar
+        Left = 0
+        Height = 25
+        Top = 0
+        Width = 100
+        Max = 3
+        Position = 0
+        TabOrder = 0
+      end
+    end
+  end
+  object MainMenu1: TMainMenu
+    Left = 248
+    Top = 10
+    object FileItem: TMenuItem
+      Caption = 'File'
+      object ExitItem: TMenuItem
+        Caption = 'Exit'
+        OnClick = ExitItemClick
+      end
+    end
+    object HelpItem: TMenuItem
+      Caption = 'Help'
+      object AboutItem: TMenuItem
+        Caption = 'About'
+        OnClick = AboutItemClick
+      end
+    end
+  end
+end
