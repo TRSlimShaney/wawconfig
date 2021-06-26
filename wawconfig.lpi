@@ -39,7 +39,7 @@
         <PackageName Value="LCL"/>
       </Item1>
     </RequiredPackages>
-    <Units Count="4">
+    <Units Count="5">
       <Unit0>
         <Filename Value="wawconfig.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -68,6 +68,13 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Saved"/>
       </Unit3>
+      <Unit4>
+        <Filename Value="modmanager.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="ModForm"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="ModManager"/>
+      </Unit4>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

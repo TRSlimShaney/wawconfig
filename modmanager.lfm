@@ -1,0 +1,98 @@
+object ModForm: TModForm
+  Left = 679
+  Height = 213
+  Top = 591
+  Width = 456
+  BorderIcons = [biSystemMenu, biMinimize]
+  BorderStyle = bsSingle
+  Caption = 'Mod Manager'
+  ClientHeight = 213
+  ClientWidth = 456
+  Position = poScreenCenter
+  LCLVersion = '2.0.12.0'
+  object ModGroup: TGroupBox
+    Left = 16
+    Height = 192
+    Top = 8
+    Width = 177
+    Caption = 'Choose a mod'
+    ClientHeight = 172
+    ClientWidth = 173
+    TabOrder = 0
+    object ModList: TListBox
+      Left = 8
+      Height = 152
+      Top = 8
+      Width = 160
+      ItemHeight = 0
+      OnSelectionChange = ModListSelectionChange
+      TabOrder = 0
+    end
+  end
+  object ModActionGroup: TGroupBox
+    Left = 224
+    Height = 192
+    Top = 8
+    Width = 209
+    Caption = 'Choose an action'
+    ClientHeight = 172
+    ClientWidth = 205
+    TabOrder = 1
+    object RenameBox: TGroupBox
+      Left = 8
+      Height = 73
+      Top = 8
+      Width = 185
+      Caption = 'Rename mod'
+      ClientHeight = 53
+      ClientWidth = 181
+      Enabled = False
+      TabOrder = 0
+      object RenameEdit: TEdit
+        Left = 8
+        Height = 23
+        Top = 0
+        Width = 168
+        TabOrder = 0
+        TextHint = 'Enter a new name, click Save'
+      end
+      object SaveButton: TButton
+        Left = 8
+        Height = 25
+        Top = 24
+        Width = 168
+        Caption = 'Save new mod name'
+        Enabled = False
+        TabOrder = 1
+      end
+    end
+    object DeleteBox: TGroupBox
+      Left = 8
+      Height = 72
+      Top = 88
+      Width = 185
+      Caption = 'Delete mod'
+      ClientHeight = 52
+      ClientWidth = 181
+      Enabled = False
+      TabOrder = 1
+      object DeleteButton: TButton
+        Left = 8
+        Height = 25
+        Top = 24
+        Width = 163
+        Caption = 'Delete selected mod'
+        Enabled = False
+        TabOrder = 0
+      end
+      object ConfirmDeleteBox: TCheckBox
+        Left = 8
+        Height = 19
+        Top = 0
+        Width = 99
+        Caption = 'Confirm delete'
+        TabOrder = 1
+      end
+    end
+  end
+end

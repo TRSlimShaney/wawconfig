@@ -10,18 +10,19 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls,
-  ComCtrls, Menus, Dos, FileUtil, strutils, Saved, About;
+  ComCtrls, Menus, Dos, FileUtil, strutils, Saved, About, ModManager;
 
 type
 
   { TMainForm }
 
   TMainForm = class(TForm)
-    MainMenu1: TMainMenu;
+    MainMenu: TMainMenu;
     FileItem: TMenuItem;
     ExitItem: TMenuItem;
     HelpItem: TMenuItem;
     AboutItem: TMenuItem;
+    ModManagerItem: TMenuItem;
     SaveButton: TButton;
     AnimatedCheck: TCheckBox;
     BloodCheck: TCheckBox;
@@ -35,9 +36,9 @@ type
     CorpseLimit: TEdit;
     FOV: TEdit;
     FPSLimit: TEdit;
-    GroupBox1: TGroupBox;
-    GroupBox2: TGroupBox;
-    GroupBox3: TGroupBox;
+    ResolutionBox: TGroupBox;
+    ThumbBox: TGroupBox;
+    AABox: TGroupBox;
     ProfileGroup: TGroupBox;
     ConfigGroup: TGroupBox;
     SettingsGroup: TGroupBox;
@@ -49,6 +50,7 @@ type
     procedure AboutItemClick(Sender: TObject);
     procedure ExitItemClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure ModManagerItemClick(Sender: TObject);
     procedure SaveButtonClick(Sender: TObject);
     procedure ConfigListSelectionChange(Sender: TObject; User: boolean);
     procedure FormActivate(Sender: TObject);
@@ -72,7 +74,9 @@ type
     // list of lines read from config file
     CfgContents: TStringList;
   public
-
+    class function GetSelectedItem(list: TListBox): String;
+    class procedure GetListOfFiles(list: TListBox; path: String; pattern: String);
+    class procedure GetListOfFolders(list: TListBox; path: String);
   end;
 
 var
@@ -85,29 +89,13 @@ implementation
 { TMainForm }
 
 procedure TMainForm.FormActivate(Sender: TObject);
-var
-  // local list of paths to each profile
-  Profiles: TStringList;
-  // local counter integer
-  i: Integer;
-  split: array of String;
 begin
   // if form not shown yet
   if not FormShown then begin
-    try
-      // build the path to the profiles directory
+    // build the path to the profiles directory
       ProfilesPath:= GetEnv('APPDATA')+PathDelim+'..'+PathDelim+'Local'+PathDelim+'Activision'+PathDelim+'CoDWaW'+PathDelim+'players'+PathDelim+'profiles'+PathDelim;
-      // get list of directory paths for profile directories
-      Profiles:= FindAllDirectories(ProfilesPath, False);
-      // build the gui list of profile names by extracting the profile name
-      // and add it to the profilelist
-      for i:=0 to Profiles.Count-1 do begin
-        split:= SplitString(Profiles[i], PathDelim);
-        ProfileList.Items.Add(split[Length(split)-1]);
-      end;
-    finally
-      Profiles.Free;
-    end;
+      GetListOfFolders(ProfileList, ProfilesPath);
+      ProfileGroup.Enabled:= True;
   end;
   // we have shown the form
   FormShown:= True;
@@ -138,12 +126,7 @@ begin
   // instantiate the CfgContents
   CfgContents:= TStringList.Create;
   // determine the selected config
-  for i:= 0 to ConfigList.Items.Count-1 do begin
-    if ConfigList.Selected[i] then begin
-      Config:= ConfigList.Items[i];
-      Break;
-    end;
-  end;
+  Config:= GetSelectedItem(ConfigList);
   // build the config file path
   ConfigPath:= ProfilePath+Config;
   // assign file pointer to the config file
@@ -453,6 +436,11 @@ begin
   CfgContents.Free;
 end;
 
+procedure TMainForm.ModManagerItemClick(Sender: TObject);
+begin
+  ModManager.ModForm.Show;
+end;
+
 procedure TMainForm.ExitItemClick(Sender: TObject);
 begin
   CfgContents.Free;
@@ -465,37 +453,21 @@ begin
 end;
 
 procedure TMainForm.ProfileListSelectionChange(Sender: TObject; User: boolean);
-var
-  // local list of config file paths
-  Configs: TStringList;
-  // local counter integer
-  i: Integer;
-  // local temporary string
-  temp: String;
 begin
   // hide settings since we aren't ready yet
   SettingsGroup.Enabled:= False;
+  ConfigGroup.Enabled:= False;
+  ModManagerItem.Enabled:= True;
+  ModManagerItem.Caption:= 'Mod Manager';
   // determine the selected profile
-  for i:=0 to ProfileList.Items.Count-1 do begin
-    if ProfileList.Selected[i] then begin
-      Profile:= ProfileList.Items[i];
-      Break;
-    end;
-  end;
+  Profile:= GetSelectedItem(ProfileList);
   ConfigList.Clear;
   // build the path to the selected profile directory
   ProfilePath:= ProfilesPath+Profile+PathDelim;
   // find all config files in the selected profile directory
   // add their file names to the gui element
-  try
-    Configs:= FindAllFiles(ProfilePath, '*.cfg', False);
-    for i:=0 to Configs.Count-1 do begin
-      temp:= ExtractFileName(Configs[i]);
-      ConfigList.Items.Add(temp);
-    end;
-  finally
-    Configs.Free;
-    // present the found configs
+  GetListOfFiles(ConfigList, ProfilePath, '*.cfg');
+  if ConfigList.Count > 0 then begin
     ConfigGroup.Enabled:= True;
   end;
 end;
@@ -526,6 +498,64 @@ begin
   end
   else begin
     StrIntToBool:= False;
+  end;
+end;
+
+class function TMainForm.GetSelectedItem(list: TListBox): String;
+var
+  // for iteration
+  i: Integer;
+begin
+  // determine the selected config
+  for i:= 0 to list.Items.Count-1 do begin
+    if list.Selected[i] then begin
+      GetSelectedItem:= list.Items[i];
+      exit;
+    end;
+  end;
+  GetSelectedItem:= ''
+end;
+
+class procedure TMainForm.GetListOfFiles(list: TListBox; path: String; pattern: String);
+var
+  // list of file paths
+  filePaths: TStringList;
+  // the extracted file name
+  extractedName: String;
+  // for iteration
+  i: Integer;
+begin
+  try
+    filePaths:= FindAllFiles(path, pattern, False);
+    for i:=0 to filePaths.Count-1 do begin
+      extractedName:= ExtractFileName(filePaths[i]);
+      list.Items.Add(extractedName);
+    end;
+  finally
+    filePaths.Free;
+  end;
+end;
+
+class procedure TMainForm.GetListOfFolders(list: TListBox; path: String);
+var
+  // list of folder paths
+  folderPaths: TStringList;
+  // extracted folder name
+  split: array of String;
+  // for iteration
+  i: Integer;
+begin
+  try
+    // get list of directory paths for profile directories
+    folderPaths:= FindAllDirectories(path, False);
+    // build the gui list of profile names by extracting the profile name
+    // and add it to the profilelist
+    for i:=0 to folderPaths.Count-1 do begin
+      split:= SplitString(folderPaths[i], PathDelim);
+      list.Items.Add(split[Length(split)-1]);
+    end;
+  finally
+    folderPaths.Free;
   end;
 end;
 

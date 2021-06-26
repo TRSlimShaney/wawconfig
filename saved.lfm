@@ -8,6 +8,7 @@ object SavedForm: TSavedForm
   Caption = 'Config Saved'
   ClientHeight = 69
   ClientWidth = 183
+  Position = poScreenCenter
   LCLVersion = '2.0.12.0'
   object Label1: TLabel
     AnchorSideLeft.Control = Owner
