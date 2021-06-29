@@ -74,6 +74,7 @@ type
     // list of lines read from config file
     CfgContents: TStringList;
   public
+    ModsPath: String; static;
     class function GetSelectedItem(list: TListBox): String;
     class procedure GetListOfFiles(list: TListBox; path: String; pattern: String);
     class procedure GetListOfFolders(list: TListBox; path: String);
@@ -89,13 +90,17 @@ implementation
 { TMainForm }
 
 procedure TMainForm.FormActivate(Sender: TObject);
+var
+  LocalAppDataDir: String;
 begin
   // if form not shown yet
   if not FormShown then begin
     // build the path to the profiles directory
-      ProfilesPath:= GetEnv('APPDATA')+PathDelim+'..'+PathDelim+'Local'+PathDelim+'Activision'+PathDelim+'CoDWaW'+PathDelim+'players'+PathDelim+'profiles'+PathDelim;
-      GetListOfFolders(ProfileList, ProfilesPath);
-      ProfileGroup.Enabled:= True;
+    LocalAppDataDir:= GetEnv('APPDATA')+PathDelim+'..'+PathDelim+'Local'+PathDelim+'Activision'+PathDelim+'CoDWaW'+PathDelim;
+    ProfilesPath:= LocalAppDataDir+'players'+PathDelim+'profiles'+PathDelim;
+    ModsPath:= LocalAppDataDir+'mods'+PathDelim;
+    GetListOfFolders(ProfileList, ProfilesPath);
+    ProfileGroup.Enabled:= True;
   end;
   // we have shown the form
   FormShown:= True;

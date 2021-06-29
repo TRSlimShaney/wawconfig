@@ -72,6 +72,7 @@
         <Filename Value="modmanager.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ModForm"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ModManager"/>
       </Unit4>

@@ -1,13 +1,14 @@
 object ModForm: TModForm
-  Left = 679
+  Left = 230
   Height = 213
-  Top = 591
+  Top = 712
   Width = 456
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Mod Manager'
   ClientHeight = 213
   ClientWidth = 456
+  OnActivate = FormActivate
   Position = poScreenCenter
   LCLVersion = '2.0.12.0'
   object ModGroup: TGroupBox
@@ -63,6 +64,7 @@ object ModForm: TModForm
         Width = 168
         Caption = 'Save new mod name'
         Enabled = False
+        OnClick = SaveButtonClick
         TabOrder = 1
       end
     end

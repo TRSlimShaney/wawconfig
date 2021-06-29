@@ -1,7 +1,7 @@
 object SavedForm: TSavedForm
-  Left = 300
+  Left = 433
   Height = 69
-  Top = 348
+  Top = 133
   Width = 183
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
