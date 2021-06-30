@@ -530,6 +530,7 @@ var
   // for iteration
   i: Integer;
 begin
+  list.Clear;
   try
     filePaths:= FindAllFiles(path, pattern, False);
     for i:=0 to filePaths.Count-1 do begin
@@ -550,6 +551,7 @@ var
   // for iteration
   i: Integer;
 begin
+  list.Clear;
   try
     // get list of directory paths for profile directories
     folderPaths:= FindAllDirectories(path, False);
