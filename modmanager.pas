@@ -61,6 +61,7 @@ begin
     selectedMod:= TMainForm.GetSelectedItem(ModList);
     modPath:= TMainForm.ModsPath+selectedMod;
     deleteSuccess:= DeleteDirectory(modPath, False);
+    TMainForm.GetListOfFolders(ModList, TMainForm.ModsPath);
   end;
 end;
 
