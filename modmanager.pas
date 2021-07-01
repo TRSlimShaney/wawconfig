@@ -26,6 +26,7 @@ type
     procedure FormActivate(Sender: TObject);
     procedure ModListSelectionChange(Sender: TObject; User: boolean);
     procedure SaveButtonClick(Sender: TObject);
+    procedure ReloadForm();
   private
     FormShown: Boolean;
   public
@@ -61,7 +62,7 @@ begin
     selectedMod:= TMainForm.GetSelectedItem(ModList);
     modPath:= TMainForm.ModsPath+selectedMod;
     deleteSuccess:= DeleteDirectory(modPath, False);
-    TMainForm.GetListOfFolders(ModList, TMainForm.ModsPath);
+    ReloadForm();
   end;
 end;
 
@@ -92,7 +93,16 @@ begin
   oldPath:= TMainForm.ModsPath+oldName+PathDelim;
   newPath:= TMainForm.ModsPath+newName+PathDelim;
   RenameFile(oldPath, newPath);
+  ReloadForm();
+end;
+
+procedure TModForm.ReloadForm();
+begin
   TMainForm.GetListOfFolders(ModList, TMainForm.ModsPath);
+  RenameBox.Enabled:= False;
+  DeleteButton.Enabled:= False;
+  ConfirmDeleteCheck.Checked:= False;
+  DeleteBox.Enabled:= False;
 end;
 
 end.

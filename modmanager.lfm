@@ -1,7 +1,7 @@
 object ModForm: TModForm
-  Left = 230
+  Left = 336
   Height = 213
-  Top = 712
+  Top = 674
   Width = 400
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
