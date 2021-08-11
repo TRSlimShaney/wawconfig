@@ -3,11 +3,14 @@ object ModForm: TModForm
   Height = 213
   Top = 674
   Width = 400
+  AutoSize = True
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Mod Manager'
   ClientHeight = 213
   ClientWidth = 400
+  Constraints.MinHeight = 213
+  Constraints.MinWidth = 400
   OnActivate = FormActivate
   Position = poScreenCenter
   LCLVersion = '2.0.12.0'
@@ -51,22 +54,22 @@ object ModForm: TModForm
     end
   end
   object ModActionGroup: TGroupBox
+    AnchorSideLeft.Control = ModGroup
+    AnchorSideLeft.Side = asrBottom
     AnchorSideTop.Control = Owner
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
-    Left = 200
-    Height = 192
+    Left = 197
+    Height = 193
     Top = 10
-    Width = 189
+    Width = 193
     Anchors = [akTop, akLeft, akRight, akBottom]
-    BorderSpacing.Top = 10
-    BorderSpacing.Right = 11
-    BorderSpacing.Bottom = 11
+    BorderSpacing.Around = 10
     Caption = 'Choose an action'
-    ClientHeight = 172
-    ClientWidth = 185
+    ClientHeight = 173
+    ClientWidth = 189
     TabOrder = 1
     object RenameBox: TGroupBox
       AnchorSideLeft.Control = ModActionGroup
@@ -75,16 +78,17 @@ object ModForm: TModForm
       AnchorSideRight.Side = asrBottom
       AnchorSideBottom.Side = asrBottom
       Left = 5
-      Height = 73
+      Height = 74
       Top = 2
-      Width = 175
+      Width = 179
       Anchors = [akTop, akLeft, akRight]
+      AutoSize = True
       BorderSpacing.Left = 5
       BorderSpacing.Top = 2
       BorderSpacing.Right = 5
       Caption = 'Rename mod'
-      ClientHeight = 53
-      ClientWidth = 171
+      ClientHeight = 54
+      ClientWidth = 175
       Enabled = False
       TabOrder = 0
       object RenameEdit: TEdit
@@ -95,7 +99,7 @@ object ModForm: TModForm
         Left = 2
         Height = 23
         Top = 2
-        Width = 167
+        Width = 171
         Anchors = [akTop, akLeft, akRight]
         BorderSpacing.Around = 2
         TabOrder = 0
@@ -103,15 +107,17 @@ object ModForm: TModForm
       end
       object SaveButton: TButton
         AnchorSideLeft.Control = RenameBox
+        AnchorSideTop.Control = RenameEdit
+        AnchorSideTop.Side = asrBottom
         AnchorSideRight.Control = RenameBox
         AnchorSideRight.Side = asrBottom
         AnchorSideBottom.Control = RenameBox
         AnchorSideBottom.Side = asrBottom
         Left = 2
         Height = 25
-        Top = 26
-        Width = 167
-        Anchors = [akLeft, akRight, akBottom]
+        Top = 27
+        Width = 171
+        Anchors = [akTop, akLeft, akRight, akBottom]
         BorderSpacing.Around = 2
         Caption = 'Save new mod name'
         OnClick = SaveButtonClick
@@ -120,34 +126,36 @@ object ModForm: TModForm
     end
     object DeleteBox: TGroupBox
       AnchorSideLeft.Control = ModActionGroup
-      AnchorSideTop.Control = ModActionGroup
+      AnchorSideTop.Control = RenameBox
+      AnchorSideTop.Side = asrBottom
       AnchorSideRight.Control = ModActionGroup
       AnchorSideRight.Side = asrBottom
       AnchorSideBottom.Control = ModActionGroup
       AnchorSideBottom.Side = asrBottom
-      Left = 5
-      Height = 72
-      Top = 85
-      Width = 175
-      Anchors = [akLeft, akRight, akBottom]
-      BorderSpacing.Left = 5
-      BorderSpacing.Right = 5
-      BorderSpacing.Bottom = 15
+      Left = 10
+      Height = 77
+      Top = 86
+      Width = 169
+      Anchors = [akTop, akLeft, akRight, akBottom]
+      AutoSize = True
+      BorderSpacing.Around = 10
       Caption = 'Delete mod'
-      ClientHeight = 52
-      ClientWidth = 171
+      ClientHeight = 57
+      ClientWidth = 165
       Enabled = False
       TabOrder = 1
       object DeleteButton: TButton
         AnchorSideLeft.Control = DeleteBox
+        AnchorSideTop.Control = ConfirmDeleteCheck
+        AnchorSideTop.Side = asrBottom
         AnchorSideRight.Control = DeleteBox
         AnchorSideRight.Side = asrBottom
         AnchorSideBottom.Control = DeleteBox
         AnchorSideBottom.Side = asrBottom
         Left = 2
-        Height = 26
-        Top = 24
-        Width = 167
+        Height = 34
+        Top = 21
+        Width = 161
         Anchors = [akTop, akLeft, akRight, akBottom]
         BorderSpacing.Around = 2
         Caption = 'Delete selected mod'

@@ -432,7 +432,7 @@ begin
       SetFAttr(f, attr or readonly);
     end;
     CloseFile(f);
-    Saved.SavedForm.Show;
+    Saved.SavedForm.ShowModal;
   end;
 end;
 
@@ -443,7 +443,7 @@ end;
 
 procedure TMainForm.ModManagerItemClick(Sender: TObject);
 begin
-  ModManager.ModForm.Show;
+  ModManager.ModForm.ShowModal;
 end;
 
 procedure TMainForm.ExitItemClick(Sender: TObject);
