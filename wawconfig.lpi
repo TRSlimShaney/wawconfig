@@ -39,13 +39,13 @@
         <PackageName Value="LCL"/>
       </Item1>
     </RequiredPackages>
-    <Units Count="5">
+    <Units Count="10">
       <Unit0>
         <Filename Value="wawconfig.lpr"/>
         <IsPartOfProject Value="True"/>
       </Unit0>
       <Unit1>
-        <Filename Value="main.pas"/>
+        <Filename Value="src\forms\main\main.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="MainForm"/>
         <HasResources Value="True"/>
@@ -53,29 +53,48 @@
         <UnitName Value="Main"/>
       </Unit1>
       <Unit2>
-        <Filename Value="about.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="AboutForm"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
-        <UnitName Value="About"/>
-      </Unit2>
-      <Unit3>
-        <Filename Value="saved.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="SavedForm"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
-        <UnitName Value="Saved"/>
-      </Unit3>
-      <Unit4>
-        <Filename Value="modmanager.pas"/>
+        <Filename Value="src\forms\modmanager\modmanager.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ModForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="ModManager"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="..\shared\forms\dialogs\aboutdialog.lfm"/>
+        <IsPartOfProject Value="True"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="..\shared\forms\dialogs\aboutdialog.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="AboutDialog"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
       </Unit4>
+      <Unit5>
+        <Filename Value="..\shared\forms\dialogs\combodialog.lfm"/>
+        <IsPartOfProject Value="True"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="..\shared\forms\dialogs\combodialog.pas"/>
+        <IsPartOfProject Value="True"/>
+        <HasResources Value="True"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="..\shared\forms\dialogs\commondialogs.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="CommonDialogs"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="..\shared\units\logging\commonlogging.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="CommonLogging"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="..\shared\forms\commontrayicon.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="CommonTrayIcon"/>
+      </Unit9>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -86,6 +105,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
+      <OtherUnitFiles Value="src\forms;src\forms\modmanager;src\forms\main;src\forms\dialogs;..\shared\forms\dialogs;..\shared\units\logging;..\shared\forms"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <CodeGeneration>

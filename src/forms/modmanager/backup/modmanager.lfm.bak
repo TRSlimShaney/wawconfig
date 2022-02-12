@@ -1,0 +1,183 @@
+object ModForm: TModForm
+  Left = 336
+  Height = 213
+  Top = 674
+  Width = 400
+  AutoSize = True
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = 'Mod Manager'
+  ClientHeight = 213
+  ClientWidth = 400
+  Constraints.MinHeight = 213
+  Constraints.MinWidth = 400
+  OnActivate = FormActivate
+  PopupMode = pmExplicit
+  Position = poOwnerFormCenter
+  LCLVersion = '2.0.12.0'
+  object ModGroup: TGroupBox
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = Owner
+    AnchorSideBottom.Side = asrBottom
+    Left = 10
+    Height = 192
+    Top = 10
+    Width = 177
+    Anchors = [akTop, akLeft, akBottom]
+    BorderSpacing.Left = 10
+    BorderSpacing.Top = 10
+    BorderSpacing.Bottom = 11
+    Caption = 'Choose a mod'
+    ClientHeight = 172
+    ClientWidth = 173
+    TabOrder = 0
+    object ModList: TListBox
+      AnchorSideLeft.Control = ModGroup
+      AnchorSideTop.Control = ModGroup
+      AnchorSideRight.Control = ModGroup
+      AnchorSideRight.Side = asrBottom
+      AnchorSideBottom.Control = ModGroup
+      AnchorSideBottom.Side = asrBottom
+      Left = 10
+      Height = 157
+      Top = 5
+      Width = 153
+      Anchors = [akTop, akLeft, akRight, akBottom]
+      BorderSpacing.Left = 10
+      BorderSpacing.Top = 5
+      BorderSpacing.Right = 10
+      BorderSpacing.Bottom = 10
+      ItemHeight = 0
+      OnSelectionChange = ModListSelectionChange
+      TabOrder = 0
+    end
+  end
+  object ModActionGroup: TGroupBox
+    AnchorSideLeft.Control = ModGroup
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = Owner
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = Owner
+    AnchorSideBottom.Side = asrBottom
+    Left = 197
+    Height = 193
+    Top = 10
+    Width = 193
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    BorderSpacing.Around = 10
+    Caption = 'Choose an action'
+    ClientHeight = 173
+    ClientWidth = 189
+    TabOrder = 1
+    object RenameBox: TGroupBox
+      AnchorSideLeft.Control = ModActionGroup
+      AnchorSideTop.Control = ModActionGroup
+      AnchorSideRight.Control = ModActionGroup
+      AnchorSideRight.Side = asrBottom
+      AnchorSideBottom.Side = asrBottom
+      Left = 5
+      Height = 74
+      Top = 2
+      Width = 179
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = True
+      BorderSpacing.Left = 5
+      BorderSpacing.Top = 2
+      BorderSpacing.Right = 5
+      Caption = 'Rename mod'
+      ClientHeight = 54
+      ClientWidth = 175
+      Enabled = False
+      TabOrder = 0
+      object RenameEdit: TEdit
+        AnchorSideLeft.Control = RenameBox
+        AnchorSideTop.Control = RenameBox
+        AnchorSideRight.Control = RenameBox
+        AnchorSideRight.Side = asrBottom
+        Left = 2
+        Height = 23
+        Top = 2
+        Width = 171
+        Anchors = [akTop, akLeft, akRight]
+        BorderSpacing.Around = 2
+        TabOrder = 0
+        TextHint = 'Enter a new name, click Save'
+      end
+      object SaveButton: TButton
+        AnchorSideLeft.Control = RenameBox
+        AnchorSideTop.Control = RenameEdit
+        AnchorSideTop.Side = asrBottom
+        AnchorSideRight.Control = RenameBox
+        AnchorSideRight.Side = asrBottom
+        AnchorSideBottom.Control = RenameBox
+        AnchorSideBottom.Side = asrBottom
+        Left = 2
+        Height = 25
+        Top = 27
+        Width = 171
+        Anchors = [akTop, akLeft, akRight, akBottom]
+        BorderSpacing.Around = 2
+        Caption = 'Save new mod name'
+        OnClick = SaveButtonClick
+        TabOrder = 1
+      end
+    end
+    object DeleteBox: TGroupBox
+      AnchorSideLeft.Control = ModActionGroup
+      AnchorSideTop.Control = RenameBox
+      AnchorSideTop.Side = asrBottom
+      AnchorSideRight.Control = ModActionGroup
+      AnchorSideRight.Side = asrBottom
+      AnchorSideBottom.Control = ModActionGroup
+      AnchorSideBottom.Side = asrBottom
+      Left = 10
+      Height = 77
+      Top = 86
+      Width = 169
+      Anchors = [akTop, akLeft, akRight, akBottom]
+      AutoSize = True
+      BorderSpacing.Around = 10
+      Caption = 'Delete mod'
+      ClientHeight = 57
+      ClientWidth = 165
+      Enabled = False
+      TabOrder = 1
+      object DeleteButton: TButton
+        AnchorSideLeft.Control = DeleteBox
+        AnchorSideTop.Control = ConfirmDeleteCheck
+        AnchorSideTop.Side = asrBottom
+        AnchorSideRight.Control = DeleteBox
+        AnchorSideRight.Side = asrBottom
+        AnchorSideBottom.Control = DeleteBox
+        AnchorSideBottom.Side = asrBottom
+        Left = 2
+        Height = 34
+        Top = 21
+        Width = 161
+        Anchors = [akTop, akLeft, akRight, akBottom]
+        BorderSpacing.Around = 2
+        Caption = 'Delete selected mod'
+        Enabled = False
+        OnClick = DeleteButtonClick
+        TabOrder = 0
+      end
+      object ConfirmDeleteCheck: TCheckBox
+        AnchorSideLeft.Control = DeleteBox
+        AnchorSideTop.Control = DeleteBox
+        AnchorSideRight.Side = asrBottom
+        AnchorSideBottom.Side = asrBottom
+        Left = 10
+        Height = 19
+        Top = 0
+        Width = 99
+        BorderSpacing.Left = 10
+        Caption = 'Confirm delete'
+        OnClick = ConfirmDeleteCheckClick
+        TabOrder = 1
+      end
+    end
+  end
+end
